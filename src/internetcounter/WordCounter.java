@@ -24,7 +24,7 @@ import java.util.Scanner;
  * Count occurrences of "block" in a website.
  *
  * @author NTropy
- * @version 4.16.21
+ * @version 11.19.2023
  */
 public final class WordCounter {
 
@@ -53,7 +53,7 @@ public final class WordCounter {
                     URL url = WebPull.verifyURL(curInpt);
                     if (url != null) {
                         int count = WebPull.pullData(url, word);
-                        System.out.println("Occurences of \"" + word + "\" in "
+                        System.out.println("Occurrences of \"" + word + "\" in "
                                 + curInpt + ": " + count);
                     } else {
                         System.out.print("\nInvalid URL. Try again.");

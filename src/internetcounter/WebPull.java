@@ -20,13 +20,15 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 
 /**
  * Pulling text data from webpage.
  *
  * @author NTropy
- * @version 4.16.21
+ * @version 11.19.2023
  */
 public final class WebPull {
 
@@ -46,14 +48,15 @@ public final class WebPull {
      *
      * @param url
      *            URL name to check
-     * @return true if valid, false otherwise
+     * @return URL if valid, null otherwise
      */
     public static URL verifyURL(final String url) {
         try {
-            URL test = new URL(url);
-            return test;
+            return new URI(url).toURL();
         } catch (MalformedURLException e) {
             return null;
+        } catch (URISyntaxException e) {
+            throw new RuntimeException(e);
         }
     }
 
@@ -84,7 +87,7 @@ public final class WebPull {
             }
             in.close();
         } catch (IOException ie) {
-            System.err.println(ie);
+            System.err.println("Web data pull unexpectedly closed.");
         }
         return res - 1;
     }
